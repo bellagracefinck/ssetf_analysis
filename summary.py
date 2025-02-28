@@ -2,33 +2,6 @@ import streamlit as st
 import pandas as pd
 import json
 
-dtypes = {'ACCESSION_NUMBER': 'str',
-'HOLDING_ID': 'int',
-'ISSUER_NAME': 'str',
-'ISSUER_LEI': 'str',
-'ISSUER_TITLE': 'str',
-'ISSUER_CUSIP': 'str',
-'BALANCE': 'float',
-'UNIT': 'str',
-'OTHER_UNIT_DESC': 'str',
-'CURRENCY_CODE': 'str',
-'CURRENCY_VALUE': 'float',
-'EXCHANGE_RATE': 'float',
-'PERCENTAGE': 'float',
-'PAYOFF_PROFILE': 'str',
-'ASSET_CAT': 'str',
-'OTHER_ASSET': 'str',
-'ISSUER_TYPE': 'str',
-'OTHER_ISSUER': 'str',
-'INVESTMENT_COUNTRY': 'str',
-'IS_RESTRICTED_SECURITY': 'str',
-'FAIR_VALUE_LEVEL': 'str',
-'DERIVATIVE_CAT': 'str'}
-
-fund_info = pd.read_csv("FUND_REPORTED_INFO.tsv", sep = '\t')
-fund_holding = pd.read_csv('FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
-swaps = pd.read_csv("NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
-counterparties = pd.read_csv("DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
 
 def summarize(accession_number, fund_holding, fund_info, swaps, counterparties, lev=2.0):
     etf = fund_holding[fund_holding['ACCESSION_NUMBER'] == accession_number]
@@ -68,8 +41,34 @@ def summarize(accession_number, fund_holding, fund_info, swaps, counterparties, 
 # Streamlit UI
 st.title("Single-Stock ETF Analyzer")
 
-# Load your dataframes here (fund_holding, fund_info, swaps, counterparties)
-# Example: fund_info = pd.read_csv("fund_info.csv")
+dtypes = {'ACCESSION_NUMBER': 'str',
+'HOLDING_ID': 'int',
+'ISSUER_NAME': 'str',
+'ISSUER_LEI': 'str',
+'ISSUER_TITLE': 'str',
+'ISSUER_CUSIP': 'str',
+'BALANCE': 'float',
+'UNIT': 'str',
+'OTHER_UNIT_DESC': 'str',
+'CURRENCY_CODE': 'str',
+'CURRENCY_VALUE': 'float',
+'EXCHANGE_RATE': 'float',
+'PERCENTAGE': 'float',
+'PAYOFF_PROFILE': 'str',
+'ASSET_CAT': 'str',
+'OTHER_ASSET': 'str',
+'ISSUER_TYPE': 'str',
+'OTHER_ISSUER': 'str',
+'INVESTMENT_COUNTRY': 'str',
+'IS_RESTRICTED_SECURITY': 'str',
+'FAIR_VALUE_LEVEL': 'str',
+'DERIVATIVE_CAT': 'str'}
+
+fund_info = pd.read_csv("FUND_REPORTED_INFO.tsv", sep = '\t')
+fund_holding = pd.read_csv('FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
+swaps = pd.read_csv("NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
+counterparties = pd.read_csv("DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
+
 
 # Dropdown for ETF selection
 fund_options = dict(zip(fund_info["SERIES_NAME"], fund_info["ACCESSION_NUMBER"]))
