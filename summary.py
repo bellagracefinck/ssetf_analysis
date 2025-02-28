@@ -64,10 +64,10 @@ dtypes = {'ACCESSION_NUMBER': 'str',
 'FAIR_VALUE_LEVEL': 'str',
 'DERIVATIVE_CAT': 'str'}
 
-fund_info = pd.read_csv("FUND_REPORTED_INFO.tsv", sep = '\t')
-fund_holding = pd.read_csv('FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
-swaps = pd.read_csv("NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
-counterparties = pd.read_csv("DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
+fund_info = pd.read_csv("/FUND_REPORTED_INFO.tsv", sep = '\t')
+fund_holding = pd.read_csv('/FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
+swaps = pd.read_csv("/NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
+counterparties = pd.read_csv("/DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
 
 
 # Dropdown for ETF selection
