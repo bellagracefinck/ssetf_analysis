@@ -64,11 +64,14 @@ dtypes = {'ACCESSION_NUMBER': 'str',
 'FAIR_VALUE_LEVEL': 'str',
 'DERIVATIVE_CAT': 'str'}
 
-fund_info = pd.read_csv("/FUND_REPORTED_INFO.tsv", sep = '\t')
-fund_holding = pd.read_csv('/FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
-swaps = pd.read_csv("/NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
-counterparties = pd.read_csv("/DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
-
+try:
+    fund_info = pd.read_csv("/FUND_REPORTED_INFO.tsv", sep = '\t')
+    fund_holding = pd.read_csv('/FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
+    swaps = pd.read_csv("/NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
+    counterparties = pd.read_csv("/DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
+except Exception as e:
+    st.error(f"Error loading data: {e}")
+    st.stop()
 
 # Dropdown for ETF selection
 fund_options = dict(zip(fund_info["SERIES_NAME"], fund_info["ACCESSION_NUMBER"]))
