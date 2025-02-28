@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import json
-
+@st.cache
 
 def summarize(accession_number, fund_holding, fund_info, swaps, counterparties, lev = 2.0):
     etf = fund_holding[fund_holding['ACCESSION_NUMBER'] == accession_number]
