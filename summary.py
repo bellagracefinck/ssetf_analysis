@@ -3,7 +3,7 @@ import pandas as pd
 import json
 
 
-def summarize(accession_number, fund_holding, fund_info, swaps, counterparties, lev=2.0):
+def summarize(accession_number, fund_holding, fund_info, swaps, counterparties, lev = 2.0):
     etf = fund_holding[fund_holding['ACCESSION_NUMBER'] == accession_number]
     fund_name = fund_info[fund_info['ACCESSION_NUMBER'] == accession_number]['SERIES_NAME'].values[0]
     fund_nav = fund_info[fund_info['ACCESSION_NUMBER'] == accession_number]['NET_ASSETS'].values[0]
@@ -65,10 +65,10 @@ dtypes = {'ACCESSION_NUMBER': 'str',
 'DERIVATIVE_CAT': 'str'}
 
 try:
-    fund_info = pd.read_csv("/FUND_REPORTED_INFO.tsv", sep = '\t')
-    fund_holding = pd.read_csv('/FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
-    swaps = pd.read_csv("/NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
-    counterparties = pd.read_csv("/DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
+    fund_info = pd.read_csv("FUND_REPORTED_INFO.tsv", sep = '\t')
+    fund_holding = pd.read_csv('FUND_REPORTED_HOLDING.tsv', sep = '\t', dtype=dtypes)
+    swaps = pd.read_csv("NONFOREIGN_EXCHANGE_SWAP.tsv", sep = '\t')
+    counterparties = pd.read_csv("DERIVATIVE_COUNTERPARTY.tsv", sep = "\t")
 except Exception as e:
     st.error(f"Error loading data: {e}")
     st.stop()
